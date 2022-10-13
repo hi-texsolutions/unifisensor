@@ -11,11 +11,14 @@ func init() {
 }
 
 func main() {
-	controller := flag.String("Controller", "", "FQDN of controller")
-	port := flag.Int("port", 8443, "Port of the controller")
-	site := flag.String("site", "default", "Site name from controller")
-	username := flag.String("username", "", "Username to log in with")
-	password := flag.String("password", "", "Password used to log in")
-	debug := flag.Bool("debug", false, "Add debug logging")
-	lib.Sensor(controller, port, site, username, password, debug)
+	controller := flag.String("c", "", "controller FQDN")
+	port := flag.Int("p", 8443, "Controller Port")
+	site := flag.String("s", "default", "Site name")
+	username := flag.String("u", "", "Username")
+	password := flag.String("pw", "", "Password")
+	debug := flag.Bool("d", false, "Debug mode")
+	flag.Parse()
+
+	lib.Sensor(*controller, *port, *site, *username, *password, *debug)
+
 }
